@@ -1,8 +1,17 @@
 import express from 'express';
 import morgan from 'morgan';
-import {appiRouter} from './api/index.mjs'
+import {appiRouter} from './api/index.mjs';
+import cors from 'cors';
 
 const app = express();
+
+const corsOptions = {
+  origin: "http://localhost:3000",
+  optionSuccessStatus: 200,
+};
+
+
+app.use(cors(corsOptions))
 
 // Set up Morgan to log requests with the 'combined' format.
 app.use(
@@ -35,7 +44,8 @@ const ipToLastRequestTime = new Map();
 
 // Main route api list
 
-app.use("/api", appiRouter)
+app.use("/api", appiRouter);
+
 
 
 // Your other middleware and routes go here.
