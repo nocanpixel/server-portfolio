@@ -6,8 +6,9 @@ import cors from 'cors';
 const app = express();
 
 const allowedOrigins = ['http://localhost:3000', 'https://camilo.vercel.app']
+
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: allowedOrigins,
 }));
 
 // Set up Morgan to log requests with the 'combined' format.
