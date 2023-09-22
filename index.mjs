@@ -5,13 +5,9 @@ import cors from 'cors';
 
 const app = express();
 
-const corsOptions = {
-  origin: "http://localhost:3000",
-  optionSuccessStatus: 200,
-};
-
-
-app.use(cors(corsOptions))
+app.use(cors({
+  origin: 'http://localhost:3000',
+}));
 
 // Set up Morgan to log requests with the 'combined' format.
 app.use(
