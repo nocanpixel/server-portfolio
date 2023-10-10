@@ -1,11 +1,11 @@
 import { Sequelize } from "sequelize";
 
 export const sequelize = new Sequelize(
-  process.env.DATABASE||"portfolio-db",
-  process.env.ROOT||"root",
-  process.env.PASSWORD||"localhost123",
+  process.env.DATABASE,
+  process.env.ROOT,
+  process.env.PASSWORD,
   {
-    host: process.env.HOST||"localhost",
+    host: process.env.HOST,
     dialect: "postgres",
     dialectOptions: {
       ssl: {
