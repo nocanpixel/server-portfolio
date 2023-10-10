@@ -1,11 +1,11 @@
 import { Sequelize } from "sequelize";
 
 export const sequelize = new Sequelize(
-  "portfolio-db",
-  "fl0user",
-  "a9ZfNXjlEK4D",
+  process.env.DATABASE,
+  process.env.ROOT,
+  process.env.PASSWORD,
   {
-    host: "ep-divine-snow-17280673.eu-central-1.aws.neon.fl0.io",
+    host: process.env.HOST,
     dialect: "postgres",
     dialectOptions: {
       ssl: {
