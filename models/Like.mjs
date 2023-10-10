@@ -10,6 +10,5 @@ export const Like = sequelize.define("like", {
   like: {
     type: Sequelize.STRING,
     allowNull: false,
-    unique: true,
   },
 });
