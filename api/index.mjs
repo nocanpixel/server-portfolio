@@ -1,12 +1,8 @@
 import express from "express";
-import mainController from "../controllers/mainController.mjs"
+import {default as mainRouter } from "./methods.mjs"
 
-const appiRouter = express();
+const apiRouter = express();
 
-const controller = new mainController();
+apiRouter.use('/', mainRouter);
 
-appiRouter.use('/', (req, res) => {
-    controller.welcome(req, res);
-});
-
-export { appiRouter }
+export default apiRouter;
