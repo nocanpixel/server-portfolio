@@ -12,7 +12,7 @@ class mainController {
         const amount = await Like.count();
 
         res.json({
-            message: {newRecord: client[0]['_options'].isNewRecord,register:clientLikes?JSON.parse(clientLikes.dataValues.like):false,amount: amount},
+            message: {newRecord: client[0]['_options'].isNewRecord,client:req.ip,register:clientLikes?JSON.parse(clientLikes.dataValues.like):false,amount: amount},
             status: res.statusCode,
         })
     }
