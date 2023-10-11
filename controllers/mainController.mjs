@@ -1,10 +1,14 @@
 import { Client } from "../models/Clients.mjs";
 import { Like } from "../models/Like.mjs";
+
+
 class mainController {
     async registerClient(req, res) {
+        const userFingerprint = req.fingerprint.hash;
+        
         const client = await Client.findOrCreate({
-            where: { address: req.ip },
-            defaults: { address: req.ip },
+            where: { address: userFingerprint },
+            defaults: { address: userFingerprint },
         })
 
         const clientLikes = await Like.findOne({where: {clientId: client[0].dataValues.id}, attributes: ['like']})
@@ -12,14 +16,14 @@ class mainController {
         const amount = await Like.count();
 
         res.json({
-            message: {newRecord: client[0]['_options'].isNewRecord,client:req.ip,register:clientLikes?JSON.parse(clientLikes.dataValues.like):false,amount: amount},
+            message: {newRecord: client[0]['_options'].isNewRecord,client:userFingerprint,register:clientLikes?JSON.parse(clientLikes.dataValues.like):false,amount: amount},
             status: res.statusCode,
         })
     }
 
     async like(req, res){
         const { like } = req.body;
-        const clientId = await Client.findOrCreate({where: { address: req.ip}, attributes: ['id']});
+        const clientId = await Client.findOrCreate({where: { address: req.fingerprint.hash}, attributes: ['id']});
 
         const sendLike = await Like.findOrCreate({
             where: { clientId: clientId[0].dataValues.id},

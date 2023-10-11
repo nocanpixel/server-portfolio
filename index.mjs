@@ -3,9 +3,14 @@ import cors from "cors";
 import { sequelize } from "./config/db-config.mjs";
 import apiRouter from "./api/index.mjs";
 import "./associations/index.mjs";
+import cookieParser from "cookie-parser";
+import Fingerprint from "express-fingerprint";
 
 const app = express();
-app.use(express.json())
+app.use(express.json());
+app.use(cookieParser());
+app.use(Fingerprint());
+
 
 const allowedOrigins = ['http://localhost:3000', 'https://camilo.vercel.app']
 
