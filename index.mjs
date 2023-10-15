@@ -12,7 +12,7 @@ app.use(cookieParser());
 app.use(Fingerprint());
 
 
-const allowedOrigins = ['http://localhost:3000', 'https://cambe.app']
+const allowedOrigins = ['http://localhost:3000', 'https://www.cambe.app']
 
 app.use(cors({
   origin: allowedOrigins,
